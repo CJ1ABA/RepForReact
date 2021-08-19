@@ -1,30 +1,46 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@material-ui/core';
+import { Provider } from 'react-redux';
+import { store } from './store'
 import './index.css';
-// import App from './App';
-import Message from './message';
+import Home from './home';
+import Chats from './Chats'
 import reportWebVitals from './reportWebVitals';
-const pHolder = 'Text your msg here...';
-const pHolderAuth = 'Text your name...';
-const admin = 'чат-Робот';
+
+
+const theme = createTheme({
+  dark: {
+    color: '#000',
+  },
+  light: {
+    color: '#282c34',
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <Message defaultText={pHolder} defaultAuth={pHolderAuth} chatAdmin={admin} />
-  </React.StrictMode>,
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/Home'>
+              <Home />
+            </Route>
+            <Route exact path='/:chatId'>
+              {/* <Message defaultText={pHolder} /> */}
+              <Chats />
+            </Route>
+            <Route path='*'>
+              <h1>404 page</h1>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </ThemeProvider>
+    </Provider>
+  </React.StrictMode >,
   document.getElementById('root')
 );
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
-
-
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

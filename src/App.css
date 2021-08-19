@@ -6,7 +6,17 @@ text-align: center;
 font-size: x-large;
 outline: none;
 padding: 8px;
-
+background-color: #b0b5bd;
+}
+.container{
+ display: flex;
+ flex-direction: column;
+ width: 100%;
+}
+.topMenu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .App-logo {
   height: 40vmin;
@@ -20,12 +30,22 @@ padding: 8px;
 }
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #282c34; */
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.home-header{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* justify-content: space-between; */
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -40,6 +60,14 @@ padding: 8px;
   background-color: grey;
   border: grey solid 2px;
 }
+.chat-butt{
+  align-self: baseline;
+  min-width: 200px;
+  height: 83vh;
+    background-color: gray;
+    padding: 18px;
+    border-radius: 10px;
+}
 .App-butt:hover{
   background-color:#61dafb ;
   transition: .3s; 
@@ -52,12 +80,13 @@ padding: 8px;
   text-align: center;
   font-size: x-large;
   padding: 8px;
-  background-color: grey;
-  border: grey solid 2px;
+  background-color: rgb(213, 204, 204);
+  border:rgb(213, 204, 204);
  }
 
 .App-link {
   color: #61dafb;
+  text-align: center;
 }
 .msgBox{
   background-color: grey;
