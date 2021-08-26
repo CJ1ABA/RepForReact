@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import ClickTheCheckBox from './store';
 
-export default function SimpleMenu({ disable }) {
+export function SimpleMenu({ disable }) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);

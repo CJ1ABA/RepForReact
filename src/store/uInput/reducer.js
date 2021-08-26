@@ -2,7 +2,7 @@ const initialState = {
     isVisible: 'false',
 };
 
-export function Switcher(state = initialState, action) {
+export function profileReducer(state = initialState, action) {
     switch (action.type) {
         case 'Clicked':
             return {

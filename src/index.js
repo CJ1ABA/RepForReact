@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@material-ui/core';
 import { Provider } from 'react-redux';
-import { store } from './store'
+import { store } from './store';
+import Chats from './components/chat-list/Chats';
+import Home from './components/home/home';
 import './index.css';
-import Home from './home';
-import Chats from './Chats'
 import reportWebVitals from './reportWebVitals';
-
+// import { HomeContainer } from './components';
 
 const theme = createTheme({
   dark: {
@@ -18,7 +18,6 @@ const theme = createTheme({
     color: '#282c34',
   },
 });
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -26,10 +25,13 @@ ReactDOM.render(
         <BrowserRouter>
           <Switch>
             <Route exact path='/Home'>
+              {/* <HomeContainer /> */}
               <Home />
             </Route>
-            <Route exact path='/:chatId'>
-              {/* <Message defaultText={pHolder} /> */}
+            <Route exact path='/Chats'>
+              <Chats />
+            </Route>
+            <Route exact path='/Chats/:roomId'>
               <Chats />
             </Route>
             <Route path='*'>
@@ -42,5 +44,4 @@ ReactDOM.render(
   </React.StrictMode >,
   document.getElementById('root')
 );
-
 reportWebVitals();
