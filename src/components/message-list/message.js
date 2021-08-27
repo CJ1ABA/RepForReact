@@ -1,5 +1,4 @@
 import { connect, useDispatch } from 'react-redux';
-// import { useState, useEffect } from 'react';
 import { changeMessageValue, clearMessageValue } from '../../store/conversations/action';
 import { sendMessageValue } from '../../store/message/action';
 import { makeStyles, TextField, Button } from '@material-ui/core';
