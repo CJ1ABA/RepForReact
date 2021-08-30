@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@material-ui/core';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { Gists } from './components/gists/gists'
 import Chats from './components/chat-list/Chats';
 import Home from './components/home/home';
 import './index.css';
@@ -33,6 +34,9 @@ ReactDOM.render(
             </Route>
             <Route exact path='/Chats/:roomId'>
               <Chats />
+            </Route>
+            <Route path='/Gists'>
+              <Gists />
             </Route>
             <Route path='*'>
               <h1>404 page</h1>

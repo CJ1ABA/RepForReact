@@ -5,4 +5,5 @@ export * from './home';
 export * from './start-page';
 export * from './CSS';
 export * from './logo';
+export * from './Check-Box';
 

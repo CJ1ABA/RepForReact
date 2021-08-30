@@ -10,16 +10,17 @@ import { changeMessageValue } from '../../store/conversations/action';
 import { makeStyles } from '@material-ui/core';
 import '../CSS/App.css';
 
+const useStyles = makeStyles((theme) => {
+    return {
+        root: {
+            flexGrow: 1,
+            background: theme.light.color,
+        },
+    }
+})
 function Chats({ conversation, lastMsg }) {
     const pHolder = 'Text your msg here...';
-    const useStyles = makeStyles((theme) => {
-        return {
-            root: {
-                flexGrow: 1,
-                background: theme.light.color,
-            },
-        }
-    })
+
     const style = useStyles();
     const roomId = useParams();
     return (

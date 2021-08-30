@@ -30,6 +30,9 @@ export function SimpleMenu({ disable }) {
                 <Link to='/Chats' style={{ textDecoration: 'none' }}>
                     <MenuItem onClick={handleClose} style={{ color: '#61dafb' }}>Chat-rooms </MenuItem>
                 </Link>
+                <Link to='/Gists' style={{ textDecoration: 'none' }}>
+                    <MenuItem onClick={handleClose} style={{ color: '#61dafb' }}>GISTS </MenuItem>
+                </Link>
             </Menu>
         </div >
     );
