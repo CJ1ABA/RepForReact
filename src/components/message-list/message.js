@@ -6,25 +6,25 @@ import { styled } from '@material-ui/core/styles';
 import logo from '../logo/logo.svg';
 import '../CSS/App.css';
 
+const MyButton = styled(Button)({
+    background: 'linear-gradient(20deg, #61dafb 25%, #16424f 95%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    fontSize: 20,
+    // height: 48,
+    padding: '0 30px',
+});
+const useStyles = makeStyles((theme) => {
+    return {
+        root: {
+            flexGrow: 1,
+            background: theme.light.color,
+        },
+    }
+})
 function Message({ defaultText, arrMsg, room, defValue }) {
-    const useStyles = makeStyles((theme) => {
-        return {
-            root: {
-                flexGrow: 1,
-                background: theme.light.color,
-            },
-        }
-    })
-    const MyButton = styled(Button)({
-        background: 'linear-gradient(20deg, #61dafb 25%, #16424f 95%)',
-        border: 0,
-        borderRadius: 3,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-        fontSize: 20,
-        // height: 48,
-        padding: '0 30px',
-    });
     const style = useStyles();
     const messages = arrMsg[room] || [];
     const value = defValue.find((item) => item.title === room).value || '';

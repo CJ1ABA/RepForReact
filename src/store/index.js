@@ -1,3 +1,5 @@
+import thunk from 'redux-thunk';
+import { gistsReducer } from './gists'
 import { profileReducer } from './uInput';
 import { messageReducer } from './message';
 import { conversationReducer } from './conversations'
@@ -9,6 +11,8 @@ export const store = createStore(
         profile: profileReducer,
         conversations: conversationReducer,
         messages: messageReducer,
+        gists: gistsReducer,
     }),
-    applyMiddleware(logger, botSendMessage)
+
+    applyMiddleware(thunk, logger, botSendMessage)
 );

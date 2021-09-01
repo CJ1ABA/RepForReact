@@ -1,25 +1,26 @@
 import { connect } from 'react-redux';
 import { SimpleMenu } from '../../components';
 import { Start } from '../../components';
-import { ClickTheCheckBox, UCheckbox } from '../../store';
+import { ClickTheCheckBox } from '../../store';
 import { makeStyles } from '@material-ui/core';
+import { UCheckbox } from '../Check-Box'
 import '../CSS/App.css';
 
+const useStyles = makeStyles((theme) => {
+    return {
+        root: {
+            flexGrow: 1,
+            background: theme.light.color,
+        },
+    }
+})
 function Home({ visible, actionClick }) {
-    const useStyles = makeStyles((theme) => {
-        return {
-            root: {
-                flexGrow: 1,
-                background: theme.light.color,
-            },
-        }
-    })
     const style = useStyles();
     return (
         <div className={style.root}>
             <div className="topMenu">
-                <SimpleMenu disable={visible} />
-                <UCheckbox actionClick={actionClick} checked={visible} />
+                <SimpleMenu disable={!visible} />
+                <UCheckbox actionClick={actionClick} checked={!visible} />
             </div>
             <hr />
             <Start className={'home-header'} mainTitle={"Let's send a message! Powered by:"} />
