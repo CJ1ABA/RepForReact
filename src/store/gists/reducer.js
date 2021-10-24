@@ -1,4 +1,4 @@
-import { GET_GISTS_START, GET_GISTS_SUCCESS, GET_GISTS_ERROR } from './types'
+import { GET_GISTS_START, GET_GISTS_SUCCESS, GET_GISTS_ERROR } from './types';
 const initialState = {
     gists: [],
     gistsPending: false,
