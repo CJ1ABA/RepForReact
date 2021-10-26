@@ -1,6 +1,6 @@
 import { connect, useDispatch } from 'react-redux';
-import { changeMessageValue, clearMessageValue } from '../../store/conversations/action';
-import { sendMessageValue } from '../../store/message/action';
+import { changeMessageValue, } from '../../store/conversations/action';
+import { sendMessageToDB } from '../../store/message/thunk';
 import { makeStyles, TextField, Button } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import logo from '../logo/logo.svg';
@@ -19,39 +19,46 @@ const MyButton = styled(Button)({
 const useStyles = makeStyles((theme) => {
     return {
         root: {
+            maxHeight: '100vh',
+            overflow: 'hidden',
             flexGrow: 1,
             background: theme.light.color,
         },
     }
 })
-function Message({ defaultText, arrMsg, room, defValue }) {
+function Message({ defaultText, arrMsg, room, defValue, delive }) {
     const style = useStyles();
-    const messages = arrMsg[room] || [];
+    const messages = [...arrMsg[room]] || [];
     const value = defValue.find((item) => item.title === room).value || '';
     const dispatch = useDispatch();
     function sendMessage() {
         if (value) {
-            dispatch(sendMessageValue({ author: 'Слава', message: value, }, room))
-            dispatch(clearMessageValue(room))
+            dispatch(sendMessageToDB({ author: 'Слава', message: value, }, room))
         }
     }
     return (
-        <div className={style.root}>
-            <header className="home-header">
+        <div className={style.root} >
+            <div className="msgList-container">
                 <h2 style={{ color: '#61dafb' }}>{`Chat-${room}`}</h2>
-                <img src={logo} className="App-logo" alt="logo" />
+                {/* <img src={logo} className="App-logo" alt="logo" /> */}
                 <div className="App-container">
                     <TextField TextField id="filled-basic" label={defaultText} variant="filled" className='inp' value={value} onChange={(e) => { dispatch(changeMessageValue(e.target.value, room)) }}></TextField>
                     <MyButton variant="contained" color="primary" href="#contained-buttons" onClick={sendMessage}>Send</MyButton>
                 </div>
-                {messages.map((item, id) => (
+                {delive &&
+                    <div className="delive">Доставлено</div>
+                }
+                <div className="msg-container">
+                    {messages.map((item, id) => (
+                        < p key={id} > {item.author}: <div className="msgBox">
+                            {item.message}
+                            <p className="date">{item?.moment}</p>
 
-                    < p key={id} > {item.author}: <div className="msgBox">
-                        {item.message}
-                        <p className="date">{item.id.getHours()} : {item.id.getMinutes()}</p>
-                    </div></p>
-                ))}
-
+                        </div></p>
+                    ))}
+                </div>
+            </div>
+            <div className="HYPREF">
                 < a
                     className="App-link"
                     href="https://reactjs.org"
@@ -60,19 +67,19 @@ function Message({ defaultText, arrMsg, room, defValue }) {
                 >
                     Learn how to send message!
                 </a>
-            </header>
+            </div>
         </div >
     );
 }
 function mapStateToProps(state) {
     return {
         arrMsg: state.messages.messages,
+        delive: state.messages.deliveredMsg,
         value: state.conversations.conversations
     }
 };
 function mapDispatchToProps(dispatch) {
     return {
-        // actionClick: () => dispatch(ClickTheCheckBox())
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Message);

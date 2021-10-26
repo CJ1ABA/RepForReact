@@ -1,10 +1,11 @@
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { sessionReducer } from './Authy/reducer';
 import { gistsReducer } from './gists'
 import { profileReducer } from './uInput';
 import { messageReducer } from './message';
-import { conversationReducer } from './conversations'
+import { conversationReducer } from './conversations';
 import { logger, botSendMessage } from './middlewares';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
 export * from './uInput'
 export const store = createStore(
     combineReducers({
@@ -12,6 +13,7 @@ export const store = createStore(
         conversations: conversationReducer,
         messages: messageReducer,
         gists: gistsReducer,
+        session: sessionReducer,
     }),
 
     applyMiddleware(thunk, logger, botSendMessage)
